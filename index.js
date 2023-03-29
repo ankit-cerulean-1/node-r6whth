@@ -4,7 +4,7 @@ const app = require('express')();
  * Problem Statement: Given list of items in array find Longest string in array
  * Input: List of Elements
  * Output: Longest string
- * To Run Program type : 'node index.js' in terminal and wait
+ * To Run Program type : 'npx nodemon index.js' in terminal and wait
  * To inspect and check console logs right click and inspect in chrome.
  */
 var getLongestString = (req, res) => {
