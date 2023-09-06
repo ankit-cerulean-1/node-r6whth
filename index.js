@@ -16,16 +16,19 @@ var getLongestString = (req, res) => {
   /** Logic Ends */
 
   res.send(
-    ' <h1 style="color:red">Timer: <span id="displayDiv"></span><h1> Output: ' +
+    ` <h1 style="color:red">Timer: <span id="displayDiv"></span>
+    <br><button onclick="resetTimer()">Reset</button>
+    <h1> Output: ` +
       output +
       '</h1>' +
       `<script>
       const COUNTER_KEY = 'my-counter';
+      var minutes=0, seconds = 0, timerSecs = 300;
 
       function countDown(i, callback) {
         //callback = callback || function(){};
           timer = setInterval(function () {
-          let minutes=0, seconds = 0;
+        
           minutes = parseInt(i / 60, 10);
           seconds = parseInt(i % 60, 10);
           minutes = minutes < 10 ? '0' + minutes : minutes;
@@ -51,7 +54,12 @@ var getLongestString = (req, res) => {
 
         }, 1000);
       }
-      countDown(60, () => {});
+      function resetTimer(){
+        clearInterval(timer);
+        window.sessionStorage.setItem(COUNTER_KEY, timerSecs);
+        countDown(timerSecs, () => {});
+      }
+      countDown(timerSecs, () => {});
       </script>`
   );
 };
