@@ -17,13 +17,14 @@ var getLongestString = (req, res) => {
 
   res.send(
     ` <h1 style="color:red">Timer: <span id="displayDiv"></span>
-    <br><button onclick="resetTimer()">Reset</button>
+    <br><button onclick="resetTimer()">Reset</button><hr>
+    <h4> Problem Statement: Given list of items in array find Longest string in array</h4>
     <h1> Output: ` +
       output +
       '</h1>' +
       `<script>
       const COUNTER_KEY = 'my-counter';
-      var minutes=0, seconds = 0, timerSecs = 300;
+      var minutes=0, seconds = 0, timerSecs = 300,cntr = 0;
 
       function countDown(i, callback) {
         //callback = callback || function(){};
@@ -55,9 +56,13 @@ var getLongestString = (req, res) => {
         }, 1000);
       }
       function resetTimer(){
-        clearInterval(timer);
-        window.sessionStorage.setItem(COUNTER_KEY, timerSecs);
-        countDown(timerSecs, () => {});
+        cntr++;
+        if(cntr == 3){
+          clearInterval(timer);
+          window.sessionStorage.setItem(COUNTER_KEY, timerSecs);
+          countDown(timerSecs, () => {});
+          cntr=0;
+        }
       }
       countDown(timerSecs, () => {});
       </script>`
